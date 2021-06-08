@@ -1,10 +1,9 @@
-import './App.css';
-import { ReadData } from './Components/ReadData';
+import MultiStepForm from './Components/MultiStepForm/MultiStepForm';
 
 function App() {
   return (
     <div className="App">
-      <ReadData />
+      <MultiStepForm />
     </div>
   );
 }
