@@ -7,8 +7,8 @@ import { FormStepPage } from './FormStepPage';
 const useStyles = FormStyles();
 const steps = ['Day 1', 'Day 2', 'Day 3'];
 
-const getStepContent = (pageStep: number, formData: object): ReactElement => {
-  return <FormStepPage pageStep={pageStep} formData={formData} />;
+const getStepContent = (pageStep: number, formData: any, setFormData: Function): ReactElement => {
+  return <FormStepPage pageStep={pageStep} formData={formData} setFormData={setFormData} />;
 };
 
 export default function MultiStepForm() {
@@ -47,7 +47,7 @@ export default function MultiStepForm() {
                 </Paper>
               </Grid>
               <Grid item md={12} lg={8}>
-                {getStepContent(activeStep, formData)}
+                {getStepContent(activeStep, formData, setFormData)}
 
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
