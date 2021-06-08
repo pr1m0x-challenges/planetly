@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Grid, Paper, Stepper, Step, StepLabel, Button } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { FormStyles } from '../../styles/FormStyles';
+import { FormStepPage } from './FormStepPage';
 
 const useStyles = FormStyles();
 const steps = ['Day 1', 'Day 2', 'Day 3'];
 
 function getStepContent(step: number) {
-  return <h1>Page{step}</h1>;
+  return <FormStepPage step={step} />;
 }
 
 export default function MultiStepForm() {
