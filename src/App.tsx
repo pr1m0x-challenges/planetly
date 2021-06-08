@@ -1,10 +1,12 @@
 import MultiStepForm from './Components/MultiStepForm/MultiStepForm';
+import { Box, Container } from '@material-ui/core';
 
 function App() {
   return (
-    <div className="App">
+    <Container maxWidth="xl">
+      <Box my={4}></Box>
       <MultiStepForm />
-    </div>
+    </Container>
   );
 }
 
