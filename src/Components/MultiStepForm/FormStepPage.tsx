@@ -11,7 +11,7 @@ export const FormStepPage: FC<IProps> = (props): ReactElement => {
   useEffect(() => {
     const formDataHC: IFormDataIndex = { ...formData };
     if (formDataHC[pageStep]) return;
-    formDataHC[pageStep] = { mwh: '' };
+    formDataHC[pageStep] = { mwh: '', location: '', date: new Date() };
 
     if (setFormData) {
       setFormData(formDataHC);

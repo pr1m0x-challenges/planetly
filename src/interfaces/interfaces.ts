@@ -20,7 +20,7 @@ export interface IFormData {
 
 export interface IFormDataIndex {
   [key: number]: {
-    [key: string]: string;
+    [key: string]: Date | number | string;
   };
 }
 
