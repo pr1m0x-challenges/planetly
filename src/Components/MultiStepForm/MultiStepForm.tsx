@@ -8,7 +8,7 @@ const useStyles = FormStyles();
 const steps = ['Day 1', 'Day 2', 'Day 3'];
 
 function getStepContent(step: number) {
-  return <FormStepPage step={step} />;
+  return <FormStepPage pageStep={step} />;
 }
 
 export default function MultiStepForm() {

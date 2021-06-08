@@ -1,11 +1,18 @@
 import { FC, ReactElement } from 'react';
+import Typography from '@material-ui/core/Typography';
 
 interface IProps {
-  step: number;
+  pageStep: number;
 }
 
 export const FormStepPage: FC<IProps> = (props): ReactElement => {
-  const { step } = props;
+  const { pageStep } = props;
 
-  return <div>Page{step}</div>;
+  return (
+    <>
+      <Typography color="secondary" variant="body1" gutterBottom style={{ fontWeight: 'bold', marginBottom: '35px' }}>
+        Weekly Report - Day {pageStep + 1}
+      </Typography>
+    </>
+  );
 };
