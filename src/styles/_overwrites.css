@@ -23,3 +23,8 @@ body {
 .MuiSelect-select {
   min-height: 0.885em !important;
 }
+
+.MuiIconButton-root svg {
+  color: white !important;
+  margin-bottom: 10px !important;
+}
