@@ -13,8 +13,10 @@ export const DatePicker: FC<IProps> = ({ formData, pageStep, handleChange }): Re
         margin="normal"
         id="date-picker-inline"
         value={formData[pageStep]?.date || null}
-        onChange={(picktedDate: Date) => {
-          handleChange(picktedDate, 'date');
+        onChange={(picktedDate: any) => {
+          if (handleChange) {
+            handleChange(picktedDate, 'date');
+          }
         }}
       />
     </MuiPickersUtilsProvider>
