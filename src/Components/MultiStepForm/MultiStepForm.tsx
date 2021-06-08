@@ -23,7 +23,9 @@ export default function MultiStepForm() {
       <CssBaseline />
 
       <main>
-        <Grid container direction="row" spacing={6} style={{ justifyContent: 'center' }}></Grid>
+        <Grid container direction="row" spacing={6} style={{ justifyContent: 'center' }}>
+          {activeStep !== steps.length ? <h1>Show Stepper</h1> : <h1>Hide Stepper</h1>}
+        </Grid>
       </main>
     </>
   );
