@@ -1,6 +1,6 @@
 import { FC, ReactElement, useEffect } from 'react';
 import { Typography, Grid } from '@material-ui/core';
-import { IProps, IFormDataIndex } from '../../interfaces/interfaces';
+import { IProps, IFormDataIndex, IErrorObject } from '../../interfaces/interfaces';
 import { TextInput } from '../TextInput';
 import { LocationSelect } from '../LocationSelect';
 import { DatePicker } from '../DatePicker';
@@ -18,9 +18,19 @@ export const FormStepPage: FC<IProps> = (props): ReactElement => {
     }
   }, [pageStep]);
 
-  const handleChange = (value: any, name?: any) => {
+  const handleChange = (value: string, name?: string) => {
+    const errorsHC: IErrorObject = { ...errorHandler.errors };
+    if (name) {
+      delete errorsHC[name];
+    }
+
+    errorHandler.setErrors(errorsHC);
+
     const formDataHC: IFormDataIndex = { ...formData };
-    formDataHC[pageStep][name] = value;
+    if (name) {
+      formDataHC[pageStep][name] = value;
+    }
+
     if (setFormData) {
       setFormData(formDataHC);
     }
