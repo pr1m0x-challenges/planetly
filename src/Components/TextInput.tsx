@@ -2,14 +2,20 @@ import { FC, ReactElement } from 'react';
 import { TextField } from '@material-ui/core';
 import { IProps } from '../interfaces/interfaces';
 import { NumberInputValidation } from '../services/validations/NumberInputValidation';
+import { TextInputStyles } from '../styles/TextInputStyles';
+
+const useStyles = TextInputStyles();
 
 export const TextInput: FC<IProps> = (props): ReactElement => {
+  const classes = useStyles();
+
   const { formData, pageStep, handleChange } = props;
 
   return (
     <TextField
       id="textinput"
       inputProps={{ 'aria-label': 'Without label' }}
+      className={classes.textInput}
       required
       fullWidth
       value={formData[pageStep]?.mwh || ''}

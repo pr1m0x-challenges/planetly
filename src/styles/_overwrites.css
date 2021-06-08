@@ -1,3 +1,16 @@
 body {
   background-color: #0d074d !important;
 }
+
+.MuiInput-underline:not(.Mui-error) {
+  border-bottom: 2px solid white !important;
+}
+
+.MuiInput-root {
+  color: white !important;
+}
+
+.MuiInputBase-input {
+  font-size: 2.125rem !important;
+  margin-top: -11px !important;
+}
