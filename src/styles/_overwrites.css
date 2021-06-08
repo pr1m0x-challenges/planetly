@@ -14,3 +14,12 @@ body {
   font-size: 2.125rem !important;
   margin-top: -11px !important;
 }
+
+.MuiSelect-icon {
+  top: calc(50% - 22px) !important;
+  min-height: 0.885em !important;
+}
+
+.MuiSelect-select {
+  min-height: 0.885em !important;
+}
