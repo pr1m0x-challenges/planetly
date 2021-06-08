@@ -21,6 +21,7 @@ export const TextInput: FC<IProps> = (props): ReactElement => {
       value={formData[pageStep]?.mwh || ''}
       autoComplete="off"
       error={!!errorHandler.errors?.mwh}
+      helperText={errorHandler.errors?.mwh}
       onKeyDown={(key: any) => {
         const mwh = NumberInputValidation(formData[pageStep].mwh, key);
         if (handleChange) {
