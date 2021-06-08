@@ -29,28 +29,26 @@ interface CarbonResponseAttributes {
   date?: Date;
 }
 
-export const RequestData: Function = async (formData: IFormData): Promise<any> => {
+export const requestData: Function = async (formData: any): Promise<any> => {
   try {
     return new Promise(async (resolve, reject) => {
-      try {
-        const keys = Object.keys(formData);
-        const allData = await Promise.all(
-          keys.map((key) => {
-            return new Promise(async (resolve, reject) => {
-              try {
-                const res = await axios.get('https://randomuser.me/api/');
-                resolve(res);
-              } catch (err) {
-                console.log(err);
-              }
-            });
-          })
-        );
+      // const keys = Object.keys(formData);
+      const keys = [1, 2, 3];
 
-        resolve(allData);
-      } catch (err) {
-        console.log(err);
-      }
+      const allData = Promise.all(
+        keys.map((key) => {
+          return new Promise(async (resolve, reject) => {
+            try {
+              const res = await axios.get('https://randomuser.me/api/');
+              resolve(res);
+            } catch (err) {
+              console.log(err);
+            }
+          });
+        })
+      );
+
+      resolve(allData);
     });
   } catch (err) {
     console.log(err);
