@@ -1,6 +1,7 @@
 import { FC, ReactElement } from 'react';
 import { TextField } from '@material-ui/core';
 import { IProps } from '../interfaces/interfaces';
+import { NumberInputValidation } from '../services/validations/NumberInputValidation';
 
 export const TextInput: FC<IProps> = (props): ReactElement => {
   const { formData, pageStep, handleChange } = props;
@@ -14,7 +15,10 @@ export const TextInput: FC<IProps> = (props): ReactElement => {
       value={formData[pageStep]?.mwh || ''}
       autoComplete="off"
       onKeyDown={(key: any) => {
-        console.log(formData[pageStep].mwh);
+        const mwh = NumberInputValidation(formData[pageStep].mwh, key);
+        if (handleChange) {
+          handleChange(mwh, 'mwh');
+        }
       }}
     />
   );
