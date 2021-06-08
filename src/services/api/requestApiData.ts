@@ -29,7 +29,7 @@ interface CarbonResponseAttributes {
   date?: Date;
 }
 
-export const requestData: Function = async (formData: any): Promise<any> => {
+export const requestData: Function = async (formData: IFormData): Promise<any> => {
   const token = process.env.REACT_APP_API_KEY;
   const url = '!!https://www.carboninterface.com/api/v1/estimates!!';
   const config = {
@@ -52,6 +52,7 @@ export const requestData: Function = async (formData: any): Promise<any> => {
           return new Promise(async (resolve, reject) => {
             try {
               const res = await axios.post(url, bodyParameters, config);
+              res.data.attributes.date = formData[key].date;
               resolve(res);
             } catch (err) {
               console.log(err);
