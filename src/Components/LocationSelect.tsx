@@ -13,6 +13,7 @@ export const LocationSelect: FC<IProps> = ({ formData, pageStep, handleChange, e
       <Select
         className={classes.select}
         value={formData[pageStep]?.location || ''}
+        error={!!errorHandler.errors.location}
         onChange={(event) => {
           handleChange(event.target.value, 'location');
         }}
