@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ReactElement } from 'react';
 import { Grid, Paper, Stepper, Step, StepLabel, Button } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { FormStyles } from '../../styles/FormStyles';
@@ -7,9 +7,9 @@ import { FormStepPage } from './FormStepPage';
 const useStyles = FormStyles();
 const steps = ['Day 1', 'Day 2', 'Day 3'];
 
-function getStepContent(step: number) {
-  return <FormStepPage pageStep={step} />;
-}
+const getStepContent = (pageStep: number, formData: object): ReactElement => {
+  return <FormStepPage pageStep={pageStep} formData={formData} />;
+};
 
 export default function MultiStepForm() {
   const classes = useStyles();
@@ -47,7 +47,7 @@ export default function MultiStepForm() {
                 </Paper>
               </Grid>
               <Grid item md={12} lg={8}>
-                {getStepContent(activeStep)}
+                {getStepContent(activeStep, formData)}
 
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
