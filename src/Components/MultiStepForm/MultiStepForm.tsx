@@ -6,6 +6,10 @@ import { FormStyles } from '../../styles/FormStyles';
 const useStyles = FormStyles();
 const steps = ['Day 1', 'Day 2', 'Day 3'];
 
+function getStepContent(step: number) {
+  return <h1>Page{step}</h1>;
+}
+
 export default function MultiStepForm() {
   const classes = useStyles();
 
@@ -42,7 +46,8 @@ export default function MultiStepForm() {
                 </Paper>
               </Grid>
               <Grid item md={12} lg={8}>
-                <h3>SHOW MEE</h3>
+                {getStepContent(activeStep)}
+
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.backButton}>
