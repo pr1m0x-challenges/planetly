@@ -9,7 +9,7 @@ const useStyles = TextInputStyles();
 export const TextInput: FC<IProps> = (props): ReactElement => {
   const classes = useStyles();
 
-  const { formData, pageStep, handleChange } = props;
+  const { formData, pageStep, handleChange, errorHandler } = props;
 
   return (
     <TextField
@@ -20,6 +20,8 @@ export const TextInput: FC<IProps> = (props): ReactElement => {
       fullWidth
       value={formData[pageStep]?.mwh || ''}
       autoComplete="off"
+      error={!!errorHandler.errors?.mwh}
+      helperText={errorHandler.errors?.mwh}
       onKeyDown={(key: any) => {
         const mwh = NumberInputValidation(formData[pageStep].mwh, key);
         if (handleChange) {

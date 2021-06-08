@@ -28,3 +28,12 @@ body {
   color: white !important;
   margin-bottom: 10px !important;
 }
+
+.Mui-error {
+  white-space: nowrap; 
+}
+
+.MuiSelect-select:focus  {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.0) !important;
+}

@@ -3,23 +3,48 @@ import { Grid, Paper, Stepper, Step, StepLabel, Button } from '@material-ui/core
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { FormStyles } from '../../styles/FormStyles';
 import { FormStepPage } from './FormStepPage';
+import { IFormData, IFormDataIndex, IErrorObject, ErrorHandler } from '../../interfaces/interfaces';
+import { MultiStepFormValidations } from '../../services/validations/MultiStepFormValidations';
 
 const useStyles = FormStyles();
 const steps = ['Day 1', 'Day 2', 'Day 3'];
 
-const getStepContent = (pageStep: number, formData: any, setFormData: Function): ReactElement => {
-  return <FormStepPage pageStep={pageStep} formData={formData} setFormData={setFormData} />;
+const getStepContent = (
+  pageStep: number,
+  formData: any,
+  setFormData: Function,
+  { errors, setErrors }: ErrorHandler
+): ReactElement => {
+  return (
+    <FormStepPage
+      pageStep={pageStep}
+      formData={formData}
+      setFormData={setFormData}
+      errorHandler={{ errors, setErrors }}
+    />
+  );
 };
 
 export default function MultiStepForm() {
   const classes = useStyles();
 
   const [activeStep, setActiveStep] = useState<number>(0);
-  const [formData, setFormData] = useState<object>({});
+  const [formData, setFormData] = useState<IFormDataIndex>({});
   const [errors, setErrors] = useState<object>({});
   const [emissionData, setEmissionData] = useState<object[]>();
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    const currentFormPageData: IFormData = formData[activeStep];
+
+    const formErrors = await MultiStepFormValidations(currentFormPageData);
+
+    if (formErrors) {
+      let errorObject: IErrorObject = {};
+      for (let error of formErrors) {
+        errorObject[error.path] = error.message;
+      }
+      return setErrors(errorObject);
+    }
     setActiveStep(activeStep + 1);
   };
 
@@ -47,7 +72,7 @@ export default function MultiStepForm() {
                 </Paper>
               </Grid>
               <Grid item md={12} lg={8}>
-                {getStepContent(activeStep, formData, setFormData)}
+                {getStepContent(activeStep, formData, setFormData, { errors, setErrors })}
 
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (

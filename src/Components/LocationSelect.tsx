@@ -1,11 +1,11 @@
 import { FC, ReactElement } from 'react';
-import { Select, MenuItem, FormControl } from '@material-ui/core';
+import { Select, MenuItem, FormControl, FormHelperText } from '@material-ui/core';
 import { IProps } from '../interfaces/interfaces';
 import { LocationSelectStyles } from '../styles/LocationSelectStyles';
 
 const useStyles = LocationSelectStyles();
 
-export const LocationSelect: FC<IProps> = ({ formData, pageStep, handleChange }: any): ReactElement => {
+export const LocationSelect: FC<IProps> = ({ formData, pageStep, handleChange, errorHandler }: any): ReactElement => {
   const classes = useStyles();
 
   return (
@@ -13,6 +13,7 @@ export const LocationSelect: FC<IProps> = ({ formData, pageStep, handleChange }:
       <Select
         className={classes.select}
         value={formData[pageStep]?.location || ''}
+        error={!!errorHandler.errors.location}
         onChange={(event) => {
           handleChange(event.target.value, 'location');
         }}
@@ -25,6 +26,7 @@ export const LocationSelect: FC<IProps> = ({ formData, pageStep, handleChange }:
         <MenuItem value="UK">UK</MenuItem>
         <MenuItem value="Spain">Spain</MenuItem>
       </Select>
+      <FormHelperText className={classes.textField}>{errorHandler.errors.location}</FormHelperText>
     </FormControl>
   );
 };
