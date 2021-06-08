@@ -5,6 +5,7 @@ import { FormStyles } from '../../styles/FormStyles';
 import { FormStepPage } from './FormStepPage';
 import { IFormData, IFormDataIndex, IErrorObject, ErrorHandler } from '../../interfaces/interfaces';
 import { MultiStepFormValidations } from '../../services/validations/MultiStepFormValidations';
+import { FormSuccessPage } from './FormSuccessPage';
 
 const useStyles = FormStyles();
 const steps = ['Day 1', 'Day 2', 'Day 3'];
@@ -87,7 +88,7 @@ export default function MultiStepForm() {
               </Grid>
             </>
           ) : (
-            <h1>Hide Stepper + Finish Page</h1>
+            <FormSuccessPage />
           )}
         </Grid>
       </main>
