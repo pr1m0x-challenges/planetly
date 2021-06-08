@@ -6,7 +6,7 @@ import { LocationSelect } from '../LocationSelect';
 import { DatePicker } from '../DatePicker';
 
 export const FormStepPage: FC<IProps> = (props): ReactElement => {
-  const { pageStep, formData, setFormData } = props;
+  const { pageStep, formData, setFormData, errorHandler } = props;
 
   useEffect(() => {
     const formDataHC: IFormDataIndex = { ...formData };
@@ -35,14 +35,24 @@ export const FormStepPage: FC<IProps> = (props): ReactElement => {
         <Grid item>
           <Typography style={{ color: 'white' }} variant="h4" gutterBottom>
             Weekly Report - Day
-            <TextInput pageStep={pageStep} formData={formData} handleChange={handleChange} />
+            <TextInput
+              pageStep={pageStep}
+              formData={formData}
+              handleChange={handleChange}
+              errorHandler={errorHandler}
+            />
             Weekly Report
           </Typography>
         </Grid>
         <Grid item>
           <Typography style={{ color: 'white' }} variant="h4" gutterBottom>
             Weekly Report - Day
-            <LocationSelect formData={formData} pageStep={pageStep} handleChange={handleChange} />
+            <LocationSelect
+              formData={formData}
+              pageStep={pageStep}
+              handleChange={handleChange}
+              errorHandler={errorHandler}
+            />
             Weekly Report
           </Typography>
         </Grid>
@@ -50,7 +60,12 @@ export const FormStepPage: FC<IProps> = (props): ReactElement => {
         <Grid item>
           <Typography style={{ color: 'white' }} variant="h4" gutterBottom>
             Weekly Report - Day
-            <DatePicker formData={formData} pageStep={pageStep} handleChange={handleChange} />
+            <DatePicker
+              formData={formData}
+              pageStep={pageStep}
+              handleChange={handleChange}
+              errorHandler={errorHandler}
+            />
             Weekly Report
           </Typography>
         </Grid>

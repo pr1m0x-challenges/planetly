@@ -7,7 +7,7 @@ let schema = yup.object().shape({
   date: yup.string().required('Please enter a date'),
 });
 
-export const MultiStepFormValidations = (v: IFormData): false | object => {
+export const MultiStepFormValidations = (v: IFormData) => {
   try {
     schema.validateSync(v, { abortEarly: false });
     return false;
