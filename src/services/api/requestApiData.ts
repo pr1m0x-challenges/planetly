@@ -51,7 +51,7 @@ export const requestData: Function = async (formData: IFormData): Promise<any> =
         keys.map((key) => {
           return new Promise(async (resolve, reject) => {
             try {
-              const res = await axios.post(url, bodyParameters, config);
+              const res: CarbonResponse = await axios.post(url, bodyParameters, config);
               res.data.attributes.date = formData[key].date;
               resolve(res);
             } catch (err) {
