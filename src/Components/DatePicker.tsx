@@ -1,8 +1,9 @@
+import { FC, ReactElement } from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import { IProps } from '../interfaces/interfaces';
 
-const DatePicker = ({ formData, pageStep, handleChange }: IProps) => {
+export const DatePicker: FC<IProps> = ({ formData, pageStep, handleChange }): ReactElement => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
@@ -19,5 +20,3 @@ const DatePicker = ({ formData, pageStep, handleChange }: IProps) => {
     </MuiPickersUtilsProvider>
   );
 };
-
-export default DatePicker;
