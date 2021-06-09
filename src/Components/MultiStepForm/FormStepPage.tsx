@@ -41,7 +41,7 @@ export const FormStepPage: FC<IProps> = (props): ReactElement => {
       <Typography color="secondary" variant="body1" gutterBottom style={{ fontWeight: 'bold', marginBottom: '35px' }}>
         Weekly Report - Day {pageStep + 1}
       </Typography>
-      <Grid container spacing={4}>
+      <Grid container direction="column" spacing={4}>
         <Grid item>
           <Typography style={{ color: 'white' }} variant="h4" gutterBottom>
             Our electricity usage is
