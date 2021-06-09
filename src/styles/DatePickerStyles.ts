@@ -7,12 +7,6 @@ export const DatePickerStyles = () => {
       width: '225px',
       marginLeft: '15px',
       marginRight: '15px',
-      '&:before': {
-        borderColor: 'white',
-      },
-      '&:after': {
-        borderColor: 'white',
-      },
     },
     icon: {
       color: 'white',

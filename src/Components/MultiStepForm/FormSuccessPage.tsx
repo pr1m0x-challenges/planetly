@@ -1,6 +1,7 @@
 import { Paper, Typography, Box, Grid } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
+import PolarChart from '../Charts/PolarChart';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,7 +33,9 @@ export const FormSuccessPage = () => {
                   Here you can see what your total yearly emissions of <strong>105 kg</strong> CO 2 consist of. Scroll
                   down to see more details.
                 </Typography>
-                <Box marginTop={5}></Box>
+                <Box marginTop={5}>
+                  <PolarChart />
+                </Box>
               </Box>
               <Box style={{ backgroundColor: '#f5f7fa' }} marginTop={5}>
                 <Box className={classes.boxSpacing}>
