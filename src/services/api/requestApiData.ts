@@ -1,35 +1,8 @@
 import axios from 'axios';
+import { IFormDataRequest, CarbonResponse } from '../../interfaces/interfaces';
 
-interface IFormData {
-  [key: string]: {
-    location: string;
-    mwh: string;
-    date: Date;
-  };
-}
-
-interface CarbonResponse {
-  data: {
-    id: string;
-    type: string;
-    attributes: CarbonResponseAttributes;
-  };
-}
-
-interface CarbonResponseAttributes {
-  country: string;
-  state: string;
-  electricity_unit: string;
-  electricity_value: number;
-  estimated_at: string;
-  carbon_g: number;
-  carbon_lb: number;
-  carbon_kg: number;
-  carbon_mt: number;
-  date?: Date;
-}
-
-export const requestData: Function = async (formData: IFormData): Promise<any> => {
+export const requestData: Function = async (formData: IFormDataRequest): Promise<any> => {
+  const { mwh, location } = formData;
   const token = process.env.REACT_APP_API_KEY;
   const url = '!!https://www.carboninterface.com/api/v1/estimates!!';
   const config = {
@@ -38,8 +11,8 @@ export const requestData: Function = async (formData: IFormData): Promise<any> =
   const bodyParameters = {
     type: 'electricity',
     electricity_unit: 'mwh',
-    electricity_value: '18',
-    country: 'us',
+    electricity_value: mwh,
+    country: location,
   };
 
   try {

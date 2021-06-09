@@ -1,4 +1,4 @@
-import { useState, ReactElement, useEffect } from 'react';
+import { useState, ReactElement, useEffect, FC } from 'react';
 import { Grid, Paper, Stepper, Step, StepLabel, Button } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { FormStyles } from '../../styles/FormStyles';
@@ -9,7 +9,7 @@ import { FormSuccessPage } from './FormSuccessPage';
 import { requestData } from '../../services/api/requestApiData';
 
 const useStyles = FormStyles();
-const steps = ['Day 1', 'Day 2', 'Day 3'];
+const steps = ['Day 1', 'Day 2'];
 
 const getStepContent = (
   pageStep: number,
@@ -27,7 +27,7 @@ const getStepContent = (
   );
 };
 
-export default function MultiStepForm() {
+export const MultiStepForm: FC = (): ReactElement => {
   const classes = useStyles();
 
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -107,4 +107,4 @@ export default function MultiStepForm() {
       </main>
     </>
   );
-}
+};

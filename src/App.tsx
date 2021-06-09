@@ -1,4 +1,4 @@
-import MultiStepForm from './Components/MultiStepForm/MultiStepForm';
+import { MultiStepForm } from './Components/MultiStepForm/MultiStepForm';
 import { Box, Container } from '@material-ui/core';
 
 function App() {

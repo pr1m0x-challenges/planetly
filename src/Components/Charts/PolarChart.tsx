@@ -1,7 +1,7 @@
-import React from 'react';
+import { Component } from 'react';
 import Chart from 'react-apexcharts';
 
-class PolarChart extends React.Component<{}, any> {
+class PolarChart extends Component<{}, any> {
   constructor(props: any) {
     super(props);
 

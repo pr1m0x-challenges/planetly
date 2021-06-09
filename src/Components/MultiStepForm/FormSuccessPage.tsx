@@ -1,5 +1,5 @@
+import { FC, ReactElement } from 'react';
 import { Paper, Typography, Box, Grid } from '@material-ui/core';
-
 import { makeStyles } from '@material-ui/core/styles';
 import PolarChart from '../Charts/PolarChart';
 
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const FormSuccessPage = () => {
+export const FormSuccessPage: FC = (): ReactElement => {
   const classes = useStyles();
 
   return (
