@@ -24,6 +24,42 @@ export interface IFormDataIndex {
   };
 }
 
+export interface IFormDataRequest {
+  [key: string]: {
+    location: string;
+    mwh: string;
+    date: Date;
+  };
+}
 export interface IErrorObject {
   [key: string]: string;
+}
+
+export interface CarbonResponse {
+  data: {
+    data: {
+      id: string;
+      type: string;
+      attributes: CarbonResponseAttributes;
+    };
+  };
+}
+
+export interface CarbonResponseAttributes {
+  country: string;
+  state: string;
+  electricity_unit: string;
+  electricity_value: number;
+  estimated_at: string;
+  carbon_g: number;
+  carbon_lb: number;
+  carbon_kg: number;
+  carbon_mt: number;
+  date?: Date;
+}
+
+export interface IResponseObject {
+  carbon_kg: number;
+  country: string;
+  date: Date;
 }

@@ -37,3 +37,7 @@ body {
   border-radius: 0;
   background-color: rgba(0, 0, 0, 0.0) !important;
 }
+
+.apexcharts-tooltip-text-y-value::after {
+  content:" kg";
+}

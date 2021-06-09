@@ -2,7 +2,7 @@ export const NumberInputValidation: Function = (value: string, key: KeyboardEven
   const maxNumberLength = 4;
   let inputString = value || '';
 
-  var charCode = key.which;
+  var charCode = key.keyCode;
 
   if (charCode === 8) {
     return inputString.slice(0, -1);
