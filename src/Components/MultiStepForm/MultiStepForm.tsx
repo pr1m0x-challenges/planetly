@@ -49,6 +49,7 @@ export const MultiStepForm: FC = (): ReactElement => {
   }, [activeStep]);
 
   const handleNext = async () => {
+    setErrors({});
     const currentFormPageData: IFormData = formData[activeStep];
 
     const formErrors = await MultiStepFormValidations(currentFormPageData);
@@ -64,6 +65,7 @@ export const MultiStepForm: FC = (): ReactElement => {
   };
 
   const handleBack = () => {
+    setErrors({});
     setActiveStep(activeStep - 1);
   };
 
