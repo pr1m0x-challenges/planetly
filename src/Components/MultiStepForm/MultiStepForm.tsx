@@ -9,7 +9,7 @@ import { FormSuccessPage } from './FormSuccessPage';
 import { requestData } from '../../services/api/requestApiData';
 
 const useStyles = FormStyles();
-const steps = ['Day 1', 'Day 2'];
+const steps = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
 
 const getStepContent = (
   pageStep: number,
@@ -74,8 +74,10 @@ export const MultiStepForm: FC = (): ReactElement => {
         <Grid container direction="row" spacing={6} style={{ justifyContent: 'center' }}>
           {activeStep !== steps.length ? (
             <>
-              <Grid item md={12} lg={2}>
+              <Grid item lg={2}>
                 <Paper className={classes.paper}>
+                  <img src="./planetly.svg" alt="Planetly" style={{ width: '100px' }} />
+
                   <Stepper activeStep={activeStep} className={classes.stepper} orientation="vertical">
                     {steps.map((label) => (
                       <Step key={label}>
@@ -85,7 +87,7 @@ export const MultiStepForm: FC = (): ReactElement => {
                   </Stepper>
                 </Paper>
               </Grid>
-              <Grid item md={12} lg={8}>
+              <Grid item xs={8}>
                 {getStepContent(activeStep, formData, setFormData, { errors, setErrors })}
 
                 <div className={classes.buttons}>
@@ -102,14 +104,14 @@ export const MultiStepForm: FC = (): ReactElement => {
             </>
           ) : (
             <>
-              {!emissionData ? (
-                <Box style={{ height: '90vh', display: 'flex', alignItems: 'center' }}>
-                  <CircularProgress style={{ width: '250px', height: '250px' }} color="secondary" />
-                </Box>
-              ) : (
+              {emissionData.length > 0 ? (
                 <div>
                   <FormSuccessPage data={emissionData} />
                 </div>
+              ) : (
+                <Box style={{ height: '90vh', display: 'flex', alignItems: 'center' }}>
+                  <CircularProgress style={{ width: '250px', height: '250px' }} color="secondary" />
+                </Box>
               )}
             </>
           )}

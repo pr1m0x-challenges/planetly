@@ -23,6 +23,10 @@ export const requestData: Function = async (formData: IFormDataRequest): Promise
                 country: formData[key].location,
               };
 
+              if (formData[key].mwh.slice(-1) === '.') {
+                bodyParameters.electricity_value.slice(1, formData[key].mwh.length - 1);
+                bodyParameters.electricity_value = bodyParameters.electricity_value.slice(0, -1);
+              }
               const res: CarbonResponse = await axios.post(url, bodyParameters, config);
               res.data.data.attributes.date = formData[key].date;
 

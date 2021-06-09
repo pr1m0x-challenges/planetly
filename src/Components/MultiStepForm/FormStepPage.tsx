@@ -44,39 +44,38 @@ export const FormStepPage: FC<IProps> = (props): ReactElement => {
       <Grid container spacing={4}>
         <Grid item>
           <Typography style={{ color: 'white' }} variant="h4" gutterBottom>
-            Weekly Report - Day
+            Our electricity usage is
             <TextInput
               pageStep={pageStep}
               formData={formData}
               handleChange={handleChange}
               errorHandler={errorHandler}
             />
-            Weekly Report
+            mwh
           </Typography>
         </Grid>
         <Grid item>
           <Typography style={{ color: 'white' }} variant="h4" gutterBottom>
-            Weekly Report - Day
+            We are located in
             <LocationSelect
               formData={formData}
               pageStep={pageStep}
               handleChange={handleChange}
               errorHandler={errorHandler}
             />
-            Weekly Report
           </Typography>
         </Grid>
 
         <Grid item>
           <Typography style={{ color: 'white' }} variant="h4" gutterBottom>
-            Weekly Report - Day
+            Take the
             <DatePicker
               formData={formData}
               pageStep={pageStep}
               handleChange={handleChange}
               errorHandler={errorHandler}
             />
-            Weekly Report
+            as tracking date
           </Typography>
         </Grid>
       </Grid>

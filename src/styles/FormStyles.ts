@@ -7,10 +7,10 @@ export const FormStyles = () => {
       display: 'flex',
     },
     paper: {
-      marginTop: theme.spacing(3),
       marginBottom: theme.spacing(3),
-      padding: theme.spacing(2),
+      padding: theme.spacing(4),
       boxShadow: 'none',
+      borderRadius: '15px',
       [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
         marginBottom: theme.spacing(6),
         padding: theme.spacing(3),
@@ -21,7 +21,7 @@ export const FormStyles = () => {
     },
     buttons: {
       display: 'flex',
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-start',
     },
     nextButton: {
       marginTop: theme.spacing(3),

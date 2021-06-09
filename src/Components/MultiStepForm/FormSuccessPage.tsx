@@ -1,7 +1,8 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useState, useEffect } from 'react';
 import { Paper, Typography, Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import PolarChartTwo from '../Charts/PolarChartTwo';
+import PolarChart from '../Charts/PolarChart';
+import { createGraphData } from '../../services/helpers/createGraphData';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -15,8 +16,33 @@ const useStyles = makeStyles((theme) => ({
 
 export const FormSuccessPage: FC<any> = ({ data }): ReactElement => {
   const classes = useStyles();
+  const [weeklyEmissons, setWeeklyEmissons] = useState<number>(0);
+  const [labels, setLabels] = useState<any>([]);
+  const [series, setSeries] = useState<any>([]);
 
-  if (data.length === 0) {
+  const [render, setRender] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (data) {
+      const getData = async () => {
+        const res: any = await createGraphData(data);
+        setSeries(res.series);
+        setLabels(res.labels);
+
+        if (res) {
+          setWeeklyEmissons(
+            res.series.reduce((acc: number, t: number) => {
+              return acc + t;
+            }, 0)
+          );
+          setRender(true);
+        }
+      };
+      getData();
+    }
+  }, []);
+
+  if (!render) {
     return <></>;
   }
 
@@ -33,35 +59,33 @@ export const FormSuccessPage: FC<any> = ({ data }): ReactElement => {
                 <Typography style={{ fontWeight: 'bold' }} color="primary" variant="h5" gutterBottom>
                   Weekly Emission Breakdown
                 </Typography>
-                <Typography color="primary" style={{ fontWeight: 'lighter' }} variant="body1" gutterBottom>
-                  You have a total weekly emissions of <strong>105 kg</strong> CO 2. In see chart below you can see
-                  graphical presention.
+                <Typography color="primary" variant="body1" gutterBottom>
+                  Here you can see what your total weekly emissions of <strong>{weeklyEmissons} kg</strong> CO 2. Find
+                  more insights in the chart below.
                 </Typography>
                 <Box marginTop={5}>
-                  <PolarChartTwo data={data} />
+                  <PolarChart data={data} labels={labels} series={series} setWeeklyEmissons={setWeeklyEmissons} />
                 </Box>
               </Box>
               <Box style={{ backgroundColor: '#f5f7fa' }} marginTop={5}>
                 <Box className={classes.boxSpacing}>
-                  <Typography color="primary" variant="h5" gutterBottom>
-                    Weekly Emission Breakdown
+                  <Typography
+                    style={{ fontWeight: 'bold', textAlign: 'center' }}
+                    color="primary"
+                    variant="h5"
+                    gutterBottom
+                  >
+                    Carbon Management Made Simple
                   </Typography>
-                  <Typography color="primary" style={{ fontWeight: 'lighter' }} variant="body1" gutterBottom>
-                    Here you can see what your total yearly emissions of <strong>105 kg</strong> CO 2 consist of. Scroll
-                    down to see more details.
-                  </Typography>
+                  <img
+                    src="./planetly.svg"
+                    alt="Planetly"
+                    style={{ width: '100px', display: 'flex', marginTop: '35px', margin: '0 auto' }}
+                  />
                 </Box>
               </Box>
             </Box>
           </Paper>
-        </Grid>
-        <Grid item>
-          <Typography style={{ color: 'white' }} variant="h5">
-            Thanks for the challenge!
-          </Typography>
-          <Typography style={{ color: 'white' }} variant="body1" gutterBottom>
-            More about me you can find here:{' '}
-          </Typography>
         </Grid>
       </Grid>
     </div>
