@@ -1,4 +1,4 @@
-import { useState, ReactElement } from 'react';
+import { useState, ReactElement, useEffect } from 'react';
 import { Grid, Paper, Stepper, Step, StepLabel, Button } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { FormStyles } from '../../styles/FormStyles';
@@ -6,6 +6,7 @@ import { FormStepPage } from './FormStepPage';
 import { IFormData, IFormDataIndex, IErrorObject, ErrorHandler } from '../../interfaces/interfaces';
 import { MultiStepFormValidations } from '../../services/validations/MultiStepFormValidations';
 import { FormSuccessPage } from './FormSuccessPage';
+import { requestData } from '../../services/api/requestApiData';
 
 const useStyles = FormStyles();
 const steps = ['Day 1', 'Day 2', 'Day 3'];
@@ -33,6 +34,18 @@ export default function MultiStepForm() {
   const [formData, setFormData] = useState<IFormDataIndex>({});
   const [errors, setErrors] = useState<object>({});
   const [emissionData, setEmissionData] = useState<object[]>();
+
+  useEffect(() => {
+    const dataRequester = async () => {
+      if (activeStep === steps.length) {
+        const res = await requestData(formData);
+
+        setEmissionData(res);
+      }
+    };
+
+    dataRequester();
+  }, [activeStep]);
 
   const handleNext = async () => {
     const currentFormPageData: IFormData = formData[activeStep];
