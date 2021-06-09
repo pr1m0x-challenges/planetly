@@ -1,9 +1,9 @@
 import { useState, ReactElement, useEffect, FC } from 'react';
-import { Grid, Paper, Stepper, Step, StepLabel, Button } from '@material-ui/core';
+import { Grid, Paper, Stepper, Step, StepLabel, Button, CircularProgress, Box } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { FormStyles } from '../../styles/FormStyles';
 import { FormStepPage } from './FormStepPage';
-import { IFormData, IFormDataIndex, IErrorObject, ErrorHandler } from '../../interfaces/interfaces';
+import { IFormData, IFormDataIndex, IErrorObject, ErrorHandler, IResponseObject } from '../../interfaces/interfaces';
 import { MultiStepFormValidations } from '../../services/validations/MultiStepFormValidations';
 import { FormSuccessPage } from './FormSuccessPage';
 import { requestData } from '../../services/api/requestApiData';
@@ -33,14 +33,15 @@ export const MultiStepForm: FC = (): ReactElement => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const [formData, setFormData] = useState<IFormDataIndex>({});
   const [errors, setErrors] = useState<object>({});
-  const [emissionData, setEmissionData] = useState<object[]>();
+  const [emissionData, setEmissionData] = useState<IResponseObject[]>([]);
 
   useEffect(() => {
     const dataRequester = async () => {
       if (activeStep === steps.length) {
         const res = await requestData(formData);
-
-        setEmissionData(res);
+        if (res.length > 0) {
+          setEmissionData(res);
+        }
       }
     };
 
@@ -69,7 +70,6 @@ export const MultiStepForm: FC = (): ReactElement => {
   return (
     <>
       <CssBaseline />
-
       <main className={classes.layout}>
         <Grid container direction="row" spacing={6} style={{ justifyContent: 'center' }}>
           {activeStep !== steps.length ? (
@@ -101,7 +101,17 @@ export const MultiStepForm: FC = (): ReactElement => {
               </Grid>
             </>
           ) : (
-            <FormSuccessPage />
+            <>
+              {!emissionData ? (
+                <Box style={{ height: '90vh', display: 'flex', alignItems: 'center' }}>
+                  <CircularProgress style={{ width: '250px', height: '250px' }} color="secondary" />
+                </Box>
+              ) : (
+                <div>
+                  <FormSuccessPage data={emissionData} />
+                </div>
+              )}
+            </>
           )}
         </Grid>
       </main>

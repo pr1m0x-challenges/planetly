@@ -1,7 +1,7 @@
 import { FC, ReactElement } from 'react';
 import { Paper, Typography, Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import PolarChart from '../Charts/PolarChart';
+import PolarChartTwo from '../Charts/PolarChartTwo';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -13,8 +13,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const FormSuccessPage: FC = (): ReactElement => {
+export const FormSuccessPage: FC<any> = ({ data }): ReactElement => {
   const classes = useStyles();
+
+  if (data.length === 0) {
+    return <></>;
+  }
 
   return (
     <div>
@@ -23,18 +27,18 @@ export const FormSuccessPage: FC = (): ReactElement => {
           <Paper className={classes.paper}>
             <Box flexDirection="column">
               <Box className={classes.boxSpacing}>
-                <Typography color="primary" style={{ fontWeight: 'bold' }} variant="h3" gutterBottom>
+                <Typography color="primary" style={{ fontWeight: 'lighter' }} variant="h4" gutterBottom>
                   Analysis results
                 </Typography>
-                <Typography color="primary" variant="h5" gutterBottom>
+                <Typography style={{ fontWeight: 'bold' }} color="primary" variant="h5" gutterBottom>
                   Weekly Emission Breakdown
                 </Typography>
                 <Typography color="primary" style={{ fontWeight: 'lighter' }} variant="body1" gutterBottom>
-                  Here you can see what your total yearly emissions of <strong>105 kg</strong> CO 2 consist of. Scroll
-                  down to see more details.
+                  You have a total weekly emissions of <strong>105 kg</strong> CO 2. In see chart below you can see
+                  graphical presention.
                 </Typography>
                 <Box marginTop={5}>
-                  <PolarChart />
+                  <PolarChartTwo data={data} />
                 </Box>
               </Box>
               <Box style={{ backgroundColor: '#f5f7fa' }} marginTop={5}>

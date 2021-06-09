@@ -20,11 +20,11 @@ export const LocationSelect: FC<IProps> = ({ formData, pageStep, handleChange, e
         displayEmpty
         inputProps={{ 'aria-label': 'Without label', classes: { icon: classes.icon } }}
       >
-        <MenuItem value="Germany">Germany</MenuItem>
-        <MenuItem value="Austria">Austria</MenuItem>
-        <MenuItem value="France">France</MenuItem>
-        <MenuItem value="UK">UK</MenuItem>
-        <MenuItem value="Spain">Spain</MenuItem>
+        <MenuItem value="de">Germany</MenuItem>
+        <MenuItem value="at">Austria</MenuItem>
+        <MenuItem value="fr">France</MenuItem>
+        <MenuItem value="gb">UK</MenuItem>
+        <MenuItem value="es">Spain</MenuItem>
       </Select>
       <FormHelperText className={classes.textField}>{errorHandler.errors.location}</FormHelperText>
     </FormControl>

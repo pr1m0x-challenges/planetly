@@ -37,9 +37,11 @@ export interface IErrorObject {
 
 export interface CarbonResponse {
   data: {
-    id: string;
-    type: string;
-    attributes: CarbonResponseAttributes;
+    data: {
+      id: string;
+      type: string;
+      attributes: CarbonResponseAttributes;
+    };
   };
 }
 
@@ -54,4 +56,10 @@ export interface CarbonResponseAttributes {
   carbon_kg: number;
   carbon_mt: number;
   date?: Date;
+}
+
+export interface IResponseObject {
+  carbon_kg: number;
+  country: string;
+  date: Date;
 }
