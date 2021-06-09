@@ -2,8 +2,9 @@ import Chart from 'react-apexcharts';
 
 export default function PolarChart(props: any) {
   const options = {
-    labels: props.labels,
     colors: ['#ee6d4d', '#fbbf4a', '#00cec1', '#352da4', '#f7b5a6', '#fddfa4', '#80e7df'],
+
+    labels: props.labels,
     markers: {
       width: 25,
       height: 12,

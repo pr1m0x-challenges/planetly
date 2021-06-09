@@ -60,8 +60,8 @@ export const FormSuccessPage: FC<any> = ({ data }): ReactElement => {
                   Weekly Emission Breakdown
                 </Typography>
                 <Typography color="primary" variant="body1" gutterBottom>
-                  Here you can see what your total weekly emissions of <strong>{weeklyEmissons} kg</strong> CO 2. Find
-                  more insights in the chart below.
+                  You have total weekly emissions of <strong>{weeklyEmissons} kg</strong> CO 2. Find more insights in
+                  the chart below.
                 </Typography>
                 <Box marginTop={5}>
                   <PolarChart data={data} labels={labels} series={series} setWeeklyEmissons={setWeeklyEmissons} />
